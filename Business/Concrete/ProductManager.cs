@@ -46,13 +46,13 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProductAdded);
         }
 
-
+        //[CacheAspect] // key,value
         public IDataResult<List<Product>> GetAll()
         {
-            //if (DateTime.Now.Hour == 23)
-            //{
-            //    return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
-            //}
+            if (DateTime.Now.Hour == 23)
+            {
+                return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
+            }
 
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(), Messages.ProductsListed);
         }
